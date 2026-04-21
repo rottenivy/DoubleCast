@@ -1,0 +1,562 @@
+[
+  {
+    "name": "m4_yearly__series_12474__target__start_3",
+    "title": "m4_yearly \u00b7 s12474 \u00b7 start 3",
+    "dataset": "m4_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.2128,
+    "crps": {
+      "chronos": 309.9374,
+      "dc_noctx": 221.4027,
+      "dc_ctx": 47.1043,
+      "dc_shuffled": 286.0341
+    }
+  },
+  {
+    "name": "monash_covid_deaths__series_119__target__start_33",
+    "title": "monash_covid_deaths \u00b7 s119 \u00b7 start 33",
+    "dataset": "monash_covid_deaths",
+    "freq": "D",
+    "tag": "context helps",
+    "crps_ratio": 0.217,
+    "crps": {
+      "chronos": 2.3053,
+      "dc_noctx": 0.922,
+      "dc_ctx": 0.2001,
+      "dc_shuffled": 0.549
+    }
+  },
+  {
+    "name": "monash_m1_yearly__series_64__target__start_10",
+    "title": "monash_m1_yearly \u00b7 s64 \u00b7 start 10",
+    "dataset": "monash_m1_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.2231,
+    "crps": {
+      "chronos": 2254.1113,
+      "dc_noctx": 1764.4583,
+      "dc_ctx": 393.5885,
+      "dc_shuffled": 2620.981
+    }
+  },
+  {
+    "name": "monash_m1_quarterly__series_60__target__start_16",
+    "title": "monash_m1_quarterly \u00b7 s60 \u00b7 start 16",
+    "dataset": "monash_m1_quarterly",
+    "freq": "Q-OCT",
+    "tag": "context helps",
+    "crps_ratio": 0.2242,
+    "crps": {
+      "chronos": 32.613,
+      "dc_noctx": 27.7513,
+      "dc_ctx": 6.2209,
+      "dc_shuffled": 33.4469
+    }
+  },
+  {
+    "name": "monash_covid_deaths__series_176__target__start_16",
+    "title": "monash_covid_deaths \u00b7 s176 \u00b7 start 16",
+    "dataset": "monash_covid_deaths",
+    "freq": "D",
+    "tag": "context helps",
+    "crps_ratio": 0.2326,
+    "crps": {
+      "chronos": 2.0598,
+      "dc_noctx": 2.6859,
+      "dc_ctx": 0.6247,
+      "dc_shuffled": 1.7851
+    }
+  },
+  {
+    "name": "m4_yearly__series_21555__target__start_5",
+    "title": "m4_yearly \u00b7 s21555 \u00b7 start 5",
+    "dataset": "m4_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.2574,
+    "crps": {
+      "chronos": 96.9455,
+      "dc_noctx": 122.7839,
+      "dc_ctx": 31.6041,
+      "dc_shuffled": 204.5173
+    }
+  },
+  {
+    "name": "monash_fred_md__series_90__target__start_56",
+    "title": "monash_fred_md \u00b7 s90 \u00b7 start 56",
+    "dataset": "monash_fred_md",
+    "freq": "M",
+    "tag": "context helps",
+    "crps_ratio": 0.2728,
+    "crps": {
+      "chronos": 4.5003,
+      "dc_noctx": 5.0167,
+      "dc_ctx": 1.3687,
+      "dc_shuffled": 5.1146
+    }
+  },
+  {
+    "name": "m4_yearly__series_507__target__start_2",
+    "title": "m4_yearly \u00b7 s507 \u00b7 start 2",
+    "dataset": "m4_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.2763,
+    "crps": {
+      "chronos": 889.1476,
+      "dc_noctx": 1108.0102,
+      "dc_ctx": 306.1315,
+      "dc_shuffled": 1239.0062
+    }
+  },
+  {
+    "name": "monash_cif_2016__series_62__target__start_3",
+    "title": "monash_cif_2016 \u00b7 s62 \u00b7 start 3",
+    "dataset": "monash_cif_2016",
+    "freq": "M",
+    "tag": "context helps",
+    "crps_ratio": 0.2803,
+    "crps": {
+      "chronos": 428.7383,
+      "dc_noctx": 400.9304,
+      "dc_ctx": 112.3999,
+      "dc_shuffled": 474.7158
+    }
+  },
+  {
+    "name": "monash_m1_quarterly__series_135__target__start_2",
+    "title": "monash_m1_quarterly \u00b7 s135 \u00b7 start 2",
+    "dataset": "monash_m1_quarterly",
+    "freq": "Q-OCT",
+    "tag": "context helps",
+    "crps_ratio": 0.2809,
+    "crps": {
+      "chronos": 48.9143,
+      "dc_noctx": 48.4587,
+      "dc_ctx": 13.6121,
+      "dc_shuffled": 32.9232
+    }
+  },
+  {
+    "name": "monash_tourism_yearly__series_115__target__start_2",
+    "title": "monash_tourism_yearly \u00b7 s115 \u00b7 start 2",
+    "dataset": "monash_tourism_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.2948,
+    "crps": {
+      "chronos": 9.6898,
+      "dc_noctx": 12.7857,
+      "dc_ctx": 3.7692,
+      "dc_shuffled": 10.9132
+    }
+  },
+  {
+    "name": "m4_yearly__series_11586__target__start_11",
+    "title": "m4_yearly \u00b7 s11586 \u00b7 start 11",
+    "dataset": "m4_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.302,
+    "crps": {
+      "chronos": 147.449,
+      "dc_noctx": 173.6593,
+      "dc_ctx": 52.4462,
+      "dc_shuffled": 205.737
+    }
+  },
+  {
+    "name": "monash_cif_2016__series_23__target__start_29",
+    "title": "monash_cif_2016 \u00b7 s23 \u00b7 start 29",
+    "dataset": "monash_cif_2016",
+    "freq": "M",
+    "tag": "context helps",
+    "crps_ratio": 0.3048,
+    "crps": {
+      "chronos": 9.6895,
+      "dc_noctx": 14.3954,
+      "dc_ctx": 4.3872,
+      "dc_shuffled": 22.5093
+    }
+  },
+  {
+    "name": "monash_m3_quarterly__series_19__target__start_19",
+    "title": "monash_m3_quarterly \u00b7 s19 \u00b7 start 19",
+    "dataset": "monash_m3_quarterly",
+    "freq": "Q-OCT",
+    "tag": "context helps",
+    "crps_ratio": 0.3103,
+    "crps": {
+      "chronos": 793.3177,
+      "dc_noctx": 703.2751,
+      "dc_ctx": 218.2197,
+      "dc_shuffled": 703.1239
+    }
+  },
+  {
+    "name": "monash_m1_monthly__series_513__target__start_22",
+    "title": "monash_m1_monthly \u00b7 s513 \u00b7 start 22",
+    "dataset": "monash_m1_monthly",
+    "freq": "M",
+    "tag": "context helps",
+    "crps_ratio": 0.3293,
+    "crps": {
+      "chronos": 5.2889,
+      "dc_noctx": 5.3508,
+      "dc_ctx": 1.762,
+      "dc_shuffled": 8.427
+    }
+  },
+  {
+    "name": "m4_yearly__series_12949__target__start_3",
+    "title": "m4_yearly \u00b7 s12949 \u00b7 start 3",
+    "dataset": "m4_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.3342,
+    "crps": {
+      "chronos": 1396.3323,
+      "dc_noctx": 1627.3802,
+      "dc_ctx": 543.9268,
+      "dc_shuffled": 1627.545
+    }
+  },
+  {
+    "name": "monash_m1_quarterly__series_95__target__start_4",
+    "title": "monash_m1_quarterly \u00b7 s95 \u00b7 start 4",
+    "dataset": "monash_m1_quarterly",
+    "freq": "Q-OCT",
+    "tag": "context helps",
+    "crps_ratio": 0.3368,
+    "crps": {
+      "chronos": 12.1833,
+      "dc_noctx": 11.6813,
+      "dc_ctx": 3.9341,
+      "dc_shuffled": 13.9262
+    }
+  },
+  {
+    "name": "dominick__series_68304__target__start_64",
+    "title": "dominick \u00b7 s68304 \u00b7 start 64",
+    "dataset": "dominick",
+    "freq": "W-THU",
+    "tag": "context helps",
+    "crps_ratio": 0.3409,
+    "crps": {
+      "chronos": 23.7058,
+      "dc_noctx": 20.486,
+      "dc_ctx": 6.984,
+      "dc_shuffled": 27.7975
+    }
+  },
+  {
+    "name": "monash_m1_yearly__series_178__target__start_2",
+    "title": "monash_m1_yearly \u00b7 s178 \u00b7 start 2",
+    "dataset": "monash_m1_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.3412,
+    "crps": {
+      "chronos": 266.3056,
+      "dc_noctx": 494.1689,
+      "dc_ctx": 168.6273,
+      "dc_shuffled": 226.7145
+    }
+  },
+  {
+    "name": "monash_m3_monthly__series_1230__target__start_36",
+    "title": "monash_m3_monthly \u00b7 s1230 \u00b7 start 36",
+    "dataset": "monash_m3_monthly",
+    "freq": "M",
+    "tag": "context helps",
+    "crps_ratio": 0.3412,
+    "crps": {
+      "chronos": 689.5642,
+      "dc_noctx": 613.8804,
+      "dc_ctx": 209.4827,
+      "dc_shuffled": 804.2982
+    }
+  },
+  {
+    "name": "monash_fred_md__series_66__target__start_178",
+    "title": "monash_fred_md \u00b7 s66 \u00b7 start 178",
+    "dataset": "monash_fred_md",
+    "freq": "M",
+    "tag": "context helps",
+    "crps_ratio": 0.3426,
+    "crps": {
+      "chronos": 1.3942,
+      "dc_noctx": 1.8352,
+      "dc_ctx": 0.6287,
+      "dc_shuffled": 2.5232
+    }
+  },
+  {
+    "name": "monash_m3_yearly__series_628__target__start_0",
+    "title": "monash_m3_yearly \u00b7 s628 \u00b7 start 0",
+    "dataset": "monash_m3_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.3449,
+    "crps": {
+      "chronos": 1994.7441,
+      "dc_noctx": 1841.5527,
+      "dc_ctx": 635.12,
+      "dc_shuffled": 2308.9515
+    }
+  },
+  {
+    "name": "monash_m1_monthly__series_451__target__start_7",
+    "title": "monash_m1_monthly \u00b7 s451 \u00b7 start 7",
+    "dataset": "monash_m1_monthly",
+    "freq": "M",
+    "tag": "context helps",
+    "crps_ratio": 0.3463,
+    "crps": {
+      "chronos": 282.2796,
+      "dc_noctx": 269.2535,
+      "dc_ctx": 93.2324,
+      "dc_shuffled": 405.5841
+    }
+  },
+  {
+    "name": "monash_m1_yearly__series_144__target__start_3",
+    "title": "monash_m1_yearly \u00b7 s144 \u00b7 start 3",
+    "dataset": "monash_m1_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.3607,
+    "crps": {
+      "chronos": 388.4484,
+      "dc_noctx": 421.6258,
+      "dc_ctx": 152.0662,
+      "dc_shuffled": 250.3143
+    }
+  },
+  {
+    "name": "monash_m1_yearly__series_83__target__start_3",
+    "title": "monash_m1_yearly \u00b7 s83 \u00b7 start 3",
+    "dataset": "monash_m1_yearly",
+    "freq": "A-DEC",
+    "tag": "context helps",
+    "crps_ratio": 0.3684,
+    "crps": {
+      "chronos": 656.6677,
+      "dc_noctx": 1241.7406,
+      "dc_ctx": 457.4997,
+      "dc_shuffled": 426.2759
+    }
+  },
+  {
+    "name": "monash_car_parts__series_503__target__start_8",
+    "title": "monash_car_parts \u00b7 s503 \u00b7 start 8",
+    "dataset": "monash_car_parts",
+    "freq": "MS",
+    "tag": "neutral",
+    "crps_ratio": 1.0,
+    "crps": {
+      "chronos": 0.233,
+      "dc_noctx": 0.2456,
+      "dc_ctx": 0.2456,
+      "dc_shuffled": 0.25
+    }
+  },
+  {
+    "name": "monash_traffic__series_563__target__start_7423",
+    "title": "monash_traffic \u00b7 s563 \u00b7 start 7423",
+    "dataset": "monash_traffic",
+    "freq": "H",
+    "tag": "neutral",
+    "crps_ratio": 1.0,
+    "crps": {
+      "chronos": 0.0087,
+      "dc_noctx": 0.0087,
+      "dc_ctx": 0.0087,
+      "dc_shuffled": 0.0077
+    }
+  },
+  {
+    "name": "monash_weather__series_508__target__start_14851",
+    "title": "monash_weather \u00b7 s508 \u00b7 start 14851",
+    "dataset": "monash_weather",
+    "freq": "D",
+    "tag": "neutral",
+    "crps_ratio": 1.0004,
+    "crps": {
+      "chronos": 0.2173,
+      "dc_noctx": 0.2285,
+      "dc_ctx": 0.2286,
+      "dc_shuffled": 0.2137
+    }
+  },
+  {
+    "name": "monash_traffic__series_53__target__start_10515",
+    "title": "monash_traffic \u00b7 s53 \u00b7 start 10515",
+    "dataset": "monash_traffic",
+    "freq": "H",
+    "tag": "neutral",
+    "crps_ratio": 0.9988,
+    "crps": {
+      "chronos": 0.0319,
+      "dc_noctx": 0.0323,
+      "dc_ctx": 0.0323,
+      "dc_shuffled": 0.0323
+    }
+  },
+  {
+    "name": "monash_hospital__series_170__target__start_37",
+    "title": "monash_hospital \u00b7 s170 \u00b7 start 37",
+    "dataset": "monash_hospital",
+    "freq": "MS",
+    "tag": "neutral",
+    "crps_ratio": 0.9986,
+    "crps": {
+      "chronos": 30.3363,
+      "dc_noctx": 30.9134,
+      "dc_ctx": 30.8697,
+      "dc_shuffled": 25.773
+    }
+  },
+  {
+    "name": "monash_m3_quarterly__series_182__target__start_10",
+    "title": "monash_m3_quarterly \u00b7 s182 \u00b7 start 10",
+    "dataset": "monash_m3_quarterly",
+    "freq": "Q-OCT",
+    "tag": "neutral",
+    "crps_ratio": 0.9983,
+    "crps": {
+      "chronos": 1271.7381,
+      "dc_noctx": 1255.281,
+      "dc_ctx": 1253.1258,
+      "dc_shuffled": 1289.9986
+    }
+  },
+  {
+    "name": "monash_tourism_monthly__series_5__target__start_21",
+    "title": "monash_tourism_monthly \u00b7 s5 \u00b7 start 21",
+    "dataset": "monash_tourism_monthly",
+    "freq": "M",
+    "tag": "neutral",
+    "crps_ratio": 1.0022,
+    "crps": {
+      "chronos": 6363.9427,
+      "dc_noctx": 6463.0743,
+      "dc_ctx": 6477.5646,
+      "dc_shuffled": 6699.9876
+    }
+  },
+  {
+    "name": "monash_car_parts__series_182__target__start_10",
+    "title": "monash_car_parts \u00b7 s182 \u00b7 start 10",
+    "dataset": "monash_car_parts",
+    "freq": "MS",
+    "tag": "neutral",
+    "crps_ratio": 1.0031,
+    "crps": {
+      "chronos": 0.1611,
+      "dc_noctx": 0.167,
+      "dc_ctx": 0.1675,
+      "dc_shuffled": 0.1674
+    }
+  },
+  {
+    "name": "monash_car_parts__series_1320__target__start_6",
+    "title": "monash_car_parts \u00b7 s1320 \u00b7 start 6",
+    "dataset": "monash_car_parts",
+    "freq": "MS",
+    "tag": "neutral",
+    "crps_ratio": 1.0037,
+    "crps": {
+      "chronos": 0.5177,
+      "dc_noctx": 0.6016,
+      "dc_ctx": 0.6038,
+      "dc_shuffled": 0.5722
+    }
+  },
+  {
+    "name": "monash_traffic__series_455__target__start_14894",
+    "title": "monash_traffic \u00b7 s455 \u00b7 start 14894",
+    "dataset": "monash_traffic",
+    "freq": "H",
+    "tag": "neutral",
+    "crps_ratio": 1.0041,
+    "crps": {
+      "chronos": 0.0284,
+      "dc_noctx": 0.0284,
+      "dc_ctx": 0.0285,
+      "dc_shuffled": 0.0285
+    }
+  },
+  {
+    "name": "monash_m3_yearly__series_285__target__start_3",
+    "title": "monash_m3_yearly \u00b7 s285 \u00b7 start 3",
+    "dataset": "monash_m3_yearly",
+    "freq": "A-DEC",
+    "tag": "context hurts",
+    "crps_ratio": 3.5254,
+    "crps": {
+      "chronos": 73.6706,
+      "dc_noctx": 81.3856,
+      "dc_ctx": 286.9206,
+      "dc_shuffled": 343.8322
+    }
+  },
+  {
+    "name": "monash_m3_yearly__series_529__target__start_0",
+    "title": "monash_m3_yearly \u00b7 s529 \u00b7 start 0",
+    "dataset": "monash_m3_yearly",
+    "freq": "A-DEC",
+    "tag": "context hurts",
+    "crps_ratio": 1.8718,
+    "crps": {
+      "chronos": 59.5108,
+      "dc_noctx": 44.1074,
+      "dc_ctx": 82.5593,
+      "dc_shuffled": 31.8296
+    }
+  },
+  {
+    "name": "monash_m3_yearly__series_326__target__start_1",
+    "title": "monash_m3_yearly \u00b7 s326 \u00b7 start 1",
+    "dataset": "monash_m3_yearly",
+    "freq": "A-DEC",
+    "tag": "context hurts",
+    "crps_ratio": 1.7434,
+    "crps": {
+      "chronos": 188.3185,
+      "dc_noctx": 196.609,
+      "dc_ctx": 342.7757,
+      "dc_shuffled": 171.4745
+    }
+  },
+  {
+    "name": "monash_m1_monthly__series_423__target__start_5",
+    "title": "monash_m1_monthly \u00b7 s423 \u00b7 start 5",
+    "dataset": "monash_m1_monthly",
+    "freq": "M",
+    "tag": "context hurts",
+    "crps_ratio": 1.6137,
+    "crps": {
+      "chronos": 6.0203,
+      "dc_noctx": 4.5386,
+      "dc_ctx": 7.3238,
+      "dc_shuffled": 4.7932
+    }
+  },
+  {
+    "name": "monash_covid_deaths__series_98__target__start_6",
+    "title": "monash_covid_deaths \u00b7 s98 \u00b7 start 6",
+    "dataset": "monash_covid_deaths",
+    "freq": "D",
+    "tag": "context hurts",
+    "crps_ratio": 1.6046,
+    "crps": {
+      "chronos": 39.1213,
+      "dc_noctx": 28.9581,
+      "dc_ctx": 46.4668,
+      "dc_shuffled": 53.1787
+    }
+  }
+]

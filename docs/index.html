@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DoubleCast — Context-Aided Forecasting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+
+  <header id="topnav">
+    <a href="#hero" class="nav-logo">DoubleCast</a>
+    <nav class="nav-links">
+      <a href="https://arxiv.org/abs/2603.12451">Paper</a>
+      <a href="https://huggingface.co/ServiceNow/DoubleCast">Model</a>
+      <a href="https://huggingface.co/datasets/ServiceNow/CAF_7M">Dataset</a>
+      <a href="https://github.com/ServiceNow/DoubleCast">Code</a>
+      <a href="#demo-section" class="nav-cta">Try Demo</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h1>DoubleCast</h1>
+    <p class="hero-tagline">Context-aided probabilistic time series forecasting</p>
+    <div class="hero-authors">
+      <p class="author-list">Vincent Zheng, &Eacute;tienne Marcotte, Arjun Ashok, Andrew Robert Williams, Lijun Sun, Alexandre Drouin, Valentina Zantedeschi</p>
+      <p class="author-affil">ServiceNow Research, McGill University, Universit&eacute; de Montr&eacute;al, Mila - Quebec AI Institute</p>
+    </div>
+    <nav class="hero-links">
+      <a href="https://arxiv.org/abs/2603.12451">Read the paper</a>
+      <a href="#demo-section" class="hero-cta">Try the demo</a>
+    </nav>
+  </section>
+
+  <section id="problem" class="content-section">
+    <h2>The Problem</h2>
+    <p>
+      Context-aided forecasting integrates external knowledge&mdash;incident reports, domain narratives, policy changes&mdash;with numerical time series to improve predictions. Yet multimodal models often fail to outperform unimodal baselines. We hypothesize the bottleneck is data quality: many existing datasets rely on contextual sources whose relevance to the forecast is uncertain, including matched web text, generated descriptions, or templated context.
+    </p>
+  </section>
+
+  <section id="dataset" class="content-section">
+    <h2>CAF-7M Dataset</h2>
+    <p>
+      We introduce <strong>CAF-7M</strong>, a semi-synthetic corpus of 7 million context-augmented time series windows spanning 11 domains. Our pipeline generates plausible scenarios using an LLM conditioned on both history and future values, then verifies test-set contexts by checking whether a strong forecaster improves when conditioned on them. This yields a rigorously validated test set with contexts that are descriptive and complementary to numerical histories. The test set contains 904 verified windows split into HARD and EASY subsets.
+    </p>
+    <figure class="fig-wide">
+      <div class="fig-img"><img src="img/pipeline.png" alt="Data augmentation pipeline: sampling windows, generating context with an LLM, and verifying context improves forecasts"></div>
+      <figcaption>The data-augmentation pipeline: sample forecasting windows, generate scenario-style context, verify that including context improves predictions.</figcaption>
+    </figure>
+  </section>
+
+  <section id="architecture" class="content-section">
+    <h2>Model Architecture</h2>
+    <p>
+      DoubleCast augments the <a href="https://github.com/amazon-science/chronos-forecasting">Chronos</a> time series foundation model with a pre-trained text encoder (<a href="https://github.com/QwenLM/qwen3">Qwen3-14B</a>). Each decoder block gains a <strong>DualT5 cross-attention</strong> layer that attends to text embeddings alongside the standard encoder&ndash;decoder attention over time series embeddings. This lightweight alignment largely preserves Chronos's numerical forecasting capability while enabling context-conditional predictions.
+    </p>
+    <figure>
+      <div class="fig-img"><img src="img/architecture.png" alt="DoubleCast architecture: Chronos encoder and Qwen text encoder feeding into DualT5 decoder blocks with dual cross-attention"></div>
+      <figcaption>Each DualT5 decoder block: masked self-attention, Chronos cross-attention, DualT5 text cross-attention, and FFN&mdash;with residual connections and layer norm throughout.</figcaption>
+    </figure>
+  </section>
+
+  <section id="results" class="content-section">
+    <h2>Results</h2>
+    <h3 class="results-subhead">Why filtering matters</h3>
+    <p>
+      On the <strong>Accepted</strong> set, correct context significantly improves both CRPS and win rate across all LLMs and multimodal forecasters. Swapped contexts do not improve over no context, confirming that gains are driven by complementary information&mdash;not any random text. On the <strong>Rejected</strong> set, providing context actually hurts accuracy. This highlights the importance of filtering: without it, low-quality contexts could lead to the wrong conclusion that a method cannot leverage context, when the contexts are simply not useful.
+    </p>
+    <div class="figure-row">
+      <figure>
+        <div class="fig-img"><img src="img/hard_crps.png" alt="CRPS comparison across multimodal forecasters on Accepted vs Rejected sets"></div>
+        <figcaption>Mean CRPS (lower is better) across multimodal forecasters on the Accepted and Rejected sets.</figcaption>
+      </figure>
+      <figure>
+        <div class="fig-img"><img src="img/hard_winrate.png" alt="Win rate against Chronos across multimodal forecasters on Accepted vs Rejected sets"></div>
+        <figcaption>Win rate against Chronos across multimodal forecasters on the Accepted and Rejected sets.</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="results-subhead">Benchmark</h3>
+    <p>
+      DoubleCast trained on CAF-7M achieves the highest win rate across all splits and is competitive with Direct Prompt using GPT-5.2 in CRPS, ranking second on ALL and HARD while achieving the best CRPS on EASY. Removing or swapping context markedly degrades both metrics, confirming that DoubleCast actively leverages context.
+    </p>
+    <figure class="bench-table-wrap">
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th colspan="2">ALL</th>
+            <th colspan="2">HARD</th>
+            <th colspan="2">EASY</th>
+          </tr>
+          <tr class="sub-header">
+            <th></th>
+            <th>CRPS</th><th>Win</th>
+            <th>CRPS</th><th>Win</th>
+            <th>CRPS</th><th>Win</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Chronos</td>
+            <td>0.278</td><td class="na">&mdash;</td>
+            <td>0.304</td><td class="na">&mdash;</td>
+            <td>0.247</td><td class="na">&mdash;</td>
+          </tr>
+          <tr>
+            <td>ChatTime</td>
+            <td>0.385</td><td>0.25</td>
+            <td>0.407</td><td>0.25</td>
+            <td>0.358</td><td>0.25</td>
+          </tr>
+          <tr>
+            <td>DP Qwen3-14B</td>
+            <td>0.296</td><td>0.51</td>
+            <td>0.277</td><td>0.63</td>
+            <td>0.319</td><td>0.36</td>
+          </tr>
+          <tr>
+            <td>DP GPT-5.2</td>
+            <td class="best">0.217</td><td class="second">0.62</td>
+            <td class="best">0.212</td><td class="second">0.75</td>
+            <td class="second">0.223</td><td class="second">0.47</td>
+          </tr>
+          <tr class="highlight">
+            <td>DoubleCast</td>
+            <td class="second">0.231</td><td class="best">0.71</td>
+            <td class="second">0.251</td><td class="best">0.79</td>
+            <td class="best">0.204</td><td class="best">0.64</td>
+          </tr>
+          <tr class="ablation">
+            <td>&ensp;no context</td>
+            <td colspan="2">+18.3% / &minus;34.7%</td>
+            <td colspan="2">+22.0% / &minus;41.9%</td>
+            <td colspan="2">+11.1% / &minus;21.5%</td>
+          </tr>
+          <tr class="ablation">
+            <td>&ensp;swapped context</td>
+            <td colspan="2">+26.5% / &minus;37.6%</td>
+            <td colspan="2">+25.2% / &minus;40.8%</td>
+            <td colspan="2">+25.4% / &minus;37.7%</td>
+          </tr>
+        </tbody>
+      </table>
+      <figcaption>Benchmark on CAF-7M test set (time series are out-of-distribution from training). CRPS (lower is better) and win rate vs Chronos. DP = Direct Prompt, an LLM-based method that prompts a language model to forecast directly from tokenized time series and context <a href="https://arxiv.org/abs/2410.18959">[1]</a>. Ablation rows show relative change in CRPS / win rate when context is removed or shuffled.</figcaption>
+    </figure>
+    <p class="references">[1] Williams et al., "Context is Key: A Benchmark for Forecasting with Essential Textual Information," ICML 2025. <a href="https://arxiv.org/abs/2410.18959">arXiv:2410.18959</a></p>
+  </section>
+
+  <section id="demo-section">
+    <div class="demo-header">
+      <div>
+        <h2>Interactive Demo</h2>
+        <p class="demo-sub">Explore forecasts on the CAF-7M <strong>HARD</strong> split. Toggle models to compare predictions with and without context.</p>
+      </div>
+      <div class="font-size-ctl" aria-label="Adjust font size">
+        <button id="font-down" aria-label="Decrease font size">A&minus;</button>
+        <button id="font-reset" aria-label="Reset font size">A</button>
+        <button id="font-up" aria-label="Increase font size">A+</button>
+      </div>
+    </div>
+    <div id="demo-app">
+      <aside id="sidebar">
+        <div class="filters">
+          <label>Show
+            <select id="filter-tag">
+              <option value="all">all examples</option>
+              <option value="context helps" selected>context helps</option>
+              <option value="neutral">neutral</option>
+              <option value="context hurts">context hurts</option>
+            </select>
+          </label>
+          <label>Sort
+            <select id="sort-by">
+              <option value="ratio_asc">context uplift &#8593;</option>
+              <option value="ratio_desc">context uplift &#8595;</option>
+              <option value="name">name</option>
+            </select>
+          </label>
+        </div>
+        <ol id="example-list"></ol>
+      </aside>
+
+      <section id="detail">
+        <div id="context-card">
+          <div class="context-head">
+            <span class="context-label">Context</span>
+            <span id="context-title" class="context-title"></span>
+          </div>
+          <div id="context-text"></div>
+        </div>
+        <div id="controls">
+          <label><input type="checkbox" id="chk-chronos" checked> Chronos <span class="hint">(baseline)</span></label>
+          <label><input type="checkbox" id="chk-dc" checked> DoubleCast</label>
+          <div class="ctx-switch" id="ctx-switch">
+            <label class="toggle-switch">
+              <input type="checkbox" id="ctx-toggle" checked>
+              <span class="toggle-track"></span>
+            </label>
+            <span class="toggle-state" id="ctx-state">Context</span>
+          </div>
+          <label class="shuffled-opt" id="shuffled-opt"><input type="checkbox" id="chk-shuffled"> Shuffled <span class="hint">(sensitivity)</span></label>
+        </div>
+        <div id="plot"></div>
+        <div id="metrics"></div>
+      </section>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
