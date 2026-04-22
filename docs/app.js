@@ -1,7 +1,7 @@
 const CHRONOS_COLOR = "#94a3b8";
 const DC_COLOR = "#62d84e";
 
-const PLOTLY_LAYOUT = {
+const PLOTLY_LAYOUT_BASE = {
   margin: { t: 16, r: 140, l: 56, b: 44 },
   xaxis: {
     type: "date",
@@ -15,6 +15,7 @@ const PLOTLY_LAYOUT = {
     showgrid: true,
     gridcolor: "rgba(255,255,255,0.04)",
     zeroline: false,
+    autorange: false,
     color: "#7a7a8a",
     tickfont: { family: "JetBrains Mono, monospace", size: 11, color: "#7a7a8a" },
   },
@@ -43,6 +44,27 @@ const T = { PAST: 0, TRUTH: 1, CHR_BAND: 2, CHR_MED: 3, DC_BAND: 4, DC_MED: 5 };
 
 let INDEX = [];
 let CURRENT = null;
+let CURRENT_YRANGE = null;
+
+/* Compute a stable y-axis range from all forecast variants for this example. */
+function computeYRange(data) {
+  const allY = [
+    ...data.past_target,
+    ...data.future_target,
+    ...data.forecasts.chronos.p10,
+    ...data.forecasts.chronos.p90,
+    ...data.forecasts.dc_ctx.p10,
+    ...data.forecasts.dc_ctx.p90,
+    ...data.forecasts.dc_noctx.p10,
+    ...data.forecasts.dc_noctx.p90,
+    ...data.forecasts.dc_shuffled.p10,
+    ...data.forecasts.dc_shuffled.p90,
+  ].filter(v => v != null && isFinite(v));
+  const lo = Math.min(...allY);
+  const hi = Math.max(...allY);
+  const pad = (hi - lo) * 0.08 || 1;
+  return [lo - pad, hi + pad];
+}
 
 /* ── Element accessors ── */
 const $chronos  = () => document.getElementById("chk-chronos");
@@ -107,10 +129,15 @@ function highlightActive() {
 
 async function selectExample(name) {
   CURRENT = await fetch(`assets/forecasts/${encodeURIComponent(name)}.json`).then(r => r.json());
+  CURRENT_YRANGE = computeYRange(CURRENT);
   highlightActive();
   renderContext();
   renderPlot();
   renderMeta();
+}
+
+function plotLayout() {
+  return { ...PLOTLY_LAYOUT_BASE, yaxis: { ...PLOTLY_LAYOUT_BASE.yaxis, range: CURRENT_YRANGE } };
 }
 
 /* ── Plot ── */
@@ -168,7 +195,7 @@ function buildTraces() {
 
 function renderPlot() {
   if (!CURRENT) return;
-  Plotly.react("plot", buildTraces(), PLOTLY_LAYOUT, { displayModeBar: false, responsive: true });
+  Plotly.react("plot", buildTraces(), plotLayout(), { displayModeBar: false, responsive: true });
 }
 
 function animateDc() {
@@ -180,6 +207,7 @@ function animateDc() {
       { y: dc.p50 },
     ],
     traces: [T.DC_BAND, T.DC_MED],
+    layout: { yaxis: { range: CURRENT_YRANGE } },
   }, {
     transition: { duration: 500, easing: "cubic-in-out" },
     frame: { duration: 500 },
@@ -202,7 +230,7 @@ function renderMeta() {
   if ($dc().checked) {
     const model = dcModel();
     const label = model === "dc_ctx" ? "DoubleCast (context)"
-                : model === "dc_shuffled" ? "DoubleCast (shuffled)"
+                : model === "dc_shuffled" ? "DoubleCast (swapped)"
                 : "DoubleCast (no context)";
     rows.push(`<tr>
       <td><span class="swatch" style="background:${DC_COLOR}"></span>${label}</td>
@@ -249,10 +277,10 @@ function renderContext() {
     card.classList.remove("ctx-irrelevant");
   } else if ($shuffled().checked) {
     /* Shuffled → mark irrelevant */
-    labelEl.textContent = "IRRELEVANT CONTEXT";
+    labelEl.textContent = "SWAPPED CONTEXT";
     labelEl.className = "context-label ctx-label-irrelevant";
     titleEl.textContent = `${CURRENT.dataset} \u00b7 ${CURRENT.freq}`;
-    textEl.textContent = "This forecast was conditioned on a shuffled context from a different time series \u2014 it is irrelevant to the actual data and serves as a sensitivity check.";
+    textEl.textContent = "This forecast was conditioned on a swapped context drawn from a different time series \u2014 it is irrelevant to the actual data and serves as a sensitivity check.";
     card.classList.remove("ctx-none");
     card.classList.add("ctx-irrelevant");
   } else {

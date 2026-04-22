@@ -24,8 +24,8 @@
   </header>
 
   <section id="hero">
-    <h1>DoubleCast</h1>
-    <p class="hero-tagline">Context-aided probabilistic time series forecasting</p>
+    <h1>Introducing DoubleCast</h1>
+    <p class="hero-tagline">Efficient, context-aided probabilistic forecasting for the real world.</p>
     <div class="hero-authors">
       <p class="author-list">Vincent Zheng, &Eacute;tienne Marcotte, Arjun Ashok, Andrew Robert Williams, Lijun Sun, Alexandre Drouin, Valentina Zantedeschi</p>
       <p class="author-affil">ServiceNow Research, McGill University, Universit&eacute; de Montr&eacute;al, Mila - Quebec AI Institute</p>
@@ -39,14 +39,14 @@
   <section id="problem" class="content-section">
     <h2>The Problem</h2>
     <p>
-      Context-aided forecasting integrates external knowledge&mdash;incident reports, domain narratives, policy changes&mdash;with numerical time series to improve predictions. Yet multimodal models often fail to outperform unimodal baselines. We hypothesize the bottleneck is data quality: many existing datasets rely on contextual sources whose relevance to the forecast is uncertain, including matched web text, generated descriptions, or templated context.
+      Context-aided forecasting integrates external knowledge&mdash;incident reports, domain narratives, policy changes&mdash;with numerical time series to improve predictions. Yet multimodal models often fail to outperform unimodal baselines. We hypothesize the bottleneck is data quality: many existing datasets rely on contextual sources whose relevance to the forecast and complementarity with historical data is uncertain, including matched web text, generated descriptions, or templated context.
     </p>
   </section>
 
   <section id="dataset" class="content-section">
     <h2>CAF-7M Dataset</h2>
     <p>
-      We introduce <strong>CAF-7M</strong>, a semi-synthetic corpus of 7 million context-augmented time series windows spanning 11 domains. Our pipeline generates plausible scenarios using an LLM conditioned on both history and future values, then verifies test-set contexts by checking whether a strong forecaster improves when conditioned on them. This yields a rigorously validated test set with contexts that are descriptive and complementary to numerical histories. The test set contains 904 verified windows split into HARD and EASY subsets.
+      We introduce <strong>CAF-7M</strong>, a semi-synthetic corpus of 7 million context-augmented time series windows spanning 11 domains. Our pipeline generates plausible scenarios using an LLM conditioned on both history and future values, then verifies test-set contexts by checking whether a strong forecaster improves when conditioned on them. This yields a rigorously validated test set with context that are relevant and complementary to numerical histories. The test set contains 904 verified windows split into HARD and EASY subsets.
     </p>
     <figure class="fig-wide">
       <div class="fig-img"><img src="img/pipeline.png" alt="Data augmentation pipeline: sampling windows, generating context with an LLM, and verifying context improves forecasts"></div>
@@ -57,7 +57,7 @@
   <section id="architecture" class="content-section">
     <h2>Model Architecture</h2>
     <p>
-      DoubleCast augments the <a href="https://github.com/amazon-science/chronos-forecasting">Chronos</a> time series foundation model with a pre-trained text encoder (<a href="https://github.com/QwenLM/qwen3">Qwen3-14B</a>). Each decoder block gains a <strong>DualT5 cross-attention</strong> layer that attends to text embeddings alongside the standard encoder&ndash;decoder attention over time series embeddings. This lightweight alignment largely preserves Chronos's numerical forecasting capability while enabling context-conditional predictions.
+      To showcase the value of CAF-7M, we train a multimodal model on it: DoubleCast. DoubleCast augments the <a href="https://github.com/amazon-science/chronos-forecasting">Chronos</a> time series foundation model with a pre-trained text encoder (<a href="https://github.com/QwenLM/qwen3">Qwen3-14B</a>). Each decoder block gains a <strong>DualT5 cross-attention</strong> layer that attends to text embeddings alongside the standard encoder&ndash;decoder attention over time series embeddings. This lightweight alignment largely preserves Chronos's numerical forecasting capability while enabling context-conditional predictions.
     </p>
     <figure>
       <div class="fig-img"><img src="img/architecture.png" alt="DoubleCast architecture: Chronos encoder and Qwen text encoder feeding into DualT5 decoder blocks with dual cross-attention"></div>
@@ -156,7 +156,7 @@
     <div class="demo-header">
       <div>
         <h2>Interactive Demo</h2>
-        <p class="demo-sub">Explore forecasts on the CAF-7M <strong>HARD</strong> split. Toggle models to compare predictions with and without context.</p>
+        <p class="demo-sub">Explore forecasts on the CAF-7M <strong>HARD</strong> split. Toggle models to compare predictions with and without context. <em>Swapped</em> substitutes the real context with one drawn from a different time series, serving as a sensitivity check.</p>
       </div>
       <div class="font-size-ctl" aria-label="Adjust font size">
         <button id="font-down" aria-label="Decrease font size">A&minus;</button>
@@ -204,7 +204,7 @@
             </label>
             <span class="toggle-state" id="ctx-state">Context</span>
           </div>
-          <label class="shuffled-opt" id="shuffled-opt"><input type="checkbox" id="chk-shuffled"> Shuffled <span class="hint">(sensitivity)</span></label>
+          <label class="shuffled-opt" id="shuffled-opt"><input type="checkbox" id="chk-shuffled"> Swapped <span class="hint">(sensitivity)</span></label>
         </div>
         <div id="plot"></div>
         <div id="metrics"></div>
